@@ -4,25 +4,34 @@
 
 @foreach($errors->all() as $m)
 
-<p>{{ $m }}</p>
+<div class="alert alert-danger">
+    {{ $m }}
+</div>
 
 @endforeach
 
-{{ Form::open(array('action' => 'ProductController@createOne')) }}
+{{ Form::open(array('action' => 'ProductController@createOne', 'class' => 'rows')) }}
 
-{{ Form::label('name') }}
-{{ Form::text('name', Input::old('name')) }}<br />
+<div class="input-group col-lg-4 {{ $errors->has('name') ? "has-error" : "" }}">
+{{ Form::text('name', Input::old('name'), array('class' => 'form-control', 'placeholder' => 'Name')) }}
+</div>
 
-{{ Form::label('price') }}
-{{ Form::text('price', Input::old('price')) }}<br />
+<div class="input-group col-lg-4 {{ $errors->has('price') ? "has-error" : "" }}">
+<span class="input-group-addon">$</span>
+{{ Form::text('price', number_format((float)Input::old('price'), 2), array('class' => 'form-control', 'placeholder' => 'Price')) }}
+</div>
 
-{{ Form::label('category_id') }}
-{{ Form::select('category_id', $category_options, Input::old('category_id')) }}<br />
+<div class="input-group col-lg-4 {{ $errors->has('category_id') ? "has-error" : "" }}">
+{{ Form::select('category_id', $category_options, Input::old('category_id'), array('class' => 'form-control')) }}
+</div>
 
-{{ Form::label('description') }}
-{{ Form::textarea('description', Input::old('description')) }}<br />
+<div class="input-group col-lg-4 {{ $errors->has('description') ? "has-error" : "" }}">
+{{ Form::textarea('description', Input::old('description'), array('class' => 'form-control', 'placeholder' => 'Description')) }}
+</div>
 
-{{ Form::submit("Add") }}
+<div class="input-group col-lg-4">
+{{ Form::submit("Add", array('class' => 'btn btn-primary')) }}
+</div>
 
 {{ Form::close() }}
 

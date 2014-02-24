@@ -38,7 +38,8 @@ class ProductController extends BaseController {
         $validator = Validator::make($values, Product::$rules);
         if ($validator->fails())
         {
-            return Redirect::to('/editone/'.$product->id)->withInput()->withErrors($validator);
+            return Redirect::action('ProductController@editOne', $product->id)
+                ->withInput()->withErrors($validator);
         }
 
         $product->fill($values);
@@ -48,7 +49,6 @@ class ProductController extends BaseController {
     
     public function deleteOne(Product $product)
     {
-        # TODO add flash message
         $product->delete();
         return Redirect::action('ProductController@showList');
     }
