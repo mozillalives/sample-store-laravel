@@ -37,6 +37,7 @@ $(document).ready(function() {
     {
         $.post(url, function() {
             $("#ajax-result-msg").html('<div class="alert alert-success">product deleted</div>');
+            window.location = "/list";
         })
         .fail(function() {
             $("#ajax-result-msg").html('<div class="alert alert-danger">an unknown error occurred, the product was not deleted</div>');

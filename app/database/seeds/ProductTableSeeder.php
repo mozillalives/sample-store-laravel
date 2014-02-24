@@ -9,9 +9,6 @@ class ProductTableSeeder extends Seeder {
         $office_cat = Category::where('name', '=', 'Office Supplies')->first()->id;
         $toys_cat = Category::where('name', '=', 'Toys')->first()->id;
         
-        // Category::create(array('name' => 'Office Supplies'));
-        // Category::create(array('name' => 'Toys'));
-        
         Product::create(array('name' => 'Red Swingline Stapler', 'price' => 5.50,
             'description' => "That's my stapler.", 'category_id' => $office_cat));
             
